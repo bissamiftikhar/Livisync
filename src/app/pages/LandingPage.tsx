@@ -58,28 +58,28 @@ export default function LandingPage() {
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 flex flex-col justify-between h-56">
                 <Users className="w-6 h-6 text-gray-800" />
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">12,340</div>
+                  <div className="text-3xl font-bold text-gray-900">342</div>
                   <p className="text-sm text-gray-600 mt-1">Active Students</p>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 flex flex-col justify-between h-56">
                 <Building2 className="w-6 h-6 text-gray-800" />
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">389</div>
+                  <div className="text-3xl font-bold text-gray-900">48</div>
                   <p className="text-sm text-gray-600 mt-1">Verified Hostels</p>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 flex flex-col justify-between h-56">
                 <MessageCircle className="w-6 h-6 text-gray-800" />
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">28.5K</div>
+                  <div className="text-3xl font-bold text-gray-900">1.2K</div>
                   <p className="text-sm text-gray-600 mt-1">Successful Matches</p>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 flex flex-col justify-between h-56">
                 <Star className="w-6 h-6 text-gray-800" />
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">4.8★</div>
+                  <div className="text-3xl font-bold text-gray-900">4.7★</div>
                   <p className="text-sm text-gray-600 mt-1">Average Rating</p>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function LandingPage() {
             <div className="grid gap-6">
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-8 text-white">
                 <div className="text-4xl font-bold mb-2">4.8/5</div>
-                <p className="text-gray-200 mb-4">Average rating from 2,847 verified students</p>
+                <p className="text-gray-200 mb-4">Average rating from 120 verified students</p>
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-white" />
@@ -164,7 +164,7 @@ export default function LandingPage() {
               <div className="bg-gray-50 rounded-lg p-8 border border-gray-200">
                 <MapPin className="w-8 h-8 text-gray-800 mb-3" />
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Available Nationwide</h3>
-                <p className="text-gray-600">Active in 50+ cities with 389 verified hostels</p>
+                <p className="text-gray-600">Active in 18 cities with 48 verified hostels</p>
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function LandingPage() {
         <section className="bg-black py-24">
           <div className="max-w-4xl mx-auto px-6 text-center text-white">
             <h2 className="text-5xl font-bold mb-4">Ready to Find Your Perfect Roommate?</h2>
-            <p className="text-lg text-gray-400 mb-10">Join 12,340+ students who've found their ideal living match</p>
+            <p className="text-lg text-gray-400 mb-10">Join 800+ students who've found their ideal living match</p>
             <Link to="/register" className="inline-block px-8 py-4 bg-white text-black rounded-lg hover:bg-gray-100 transition-all font-semibold shadow-sm hover:shadow-md">
               Get Started Today
             </Link>
