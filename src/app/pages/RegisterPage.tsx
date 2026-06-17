@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router';
-import { Home, Users, Building2, Mail, Lock, Phone, User } from 'lucide-react';
+import { Home, Users, Building2, Mail, Lock, Phone, User, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 
 export default function RegisterPage() {
@@ -30,177 +30,157 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6">
+      <div className="w-full max-w-md">
         {/* Logo */}
-        <Link to="/" className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-            <Home className="w-6 h-6 text-white" />
+        <Link to="/" className="flex items-center gap-2 mb-12 hover:opacity-75 transition-opacity w-fit">
+          <div className="w-9 h-9 bg-black rounded-lg flex items-center justify-center">
+            <Home className="w-5 h-5 text-white" />
           </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">LiviSync</span>
+          <span className="text-xl font-bold text-black">LiviSync</span>
         </Link>
 
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
-          {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex gap-2 mb-4">
-              <div className={`flex-1 h-1.5 rounded-full transition-colors ${step >= 1 ? 'bg-emerald-600' : 'bg-gray-200'}`} />
-              <div className={`flex-1 h-1.5 rounded-full transition-colors ${step >= 2 ? 'bg-emerald-600' : 'bg-gray-200'}`} />
-            </div>
-            <p className="text-xs font-medium text-gray-600">Step {step} of 2</p>
-          </div>
-
-          {/* Step 1: Role Selection */}
-          {step === 1 && (
-            <div>
-              <h2 className="text-3xl font-bold mb-2 text-gray-900">Join LiviSync</h2>
-              <p className="text-gray-600 mb-8">Choose your role to get started</p>
-
-              <div className="space-y-4">
-                {/* Student Card */}
-                <button
-                  onClick={() => handleRoleSelect('student')}
-                  className="w-full p-6 border-2 border-gray-200 rounded-xl hover:border-emerald-500 hover:bg-emerald-50/50 transition-all text-left group"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-                      <Users className="w-6 h-6 text-emerald-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-1 group-hover:text-emerald-600 transition-colors">I'm a Student</h3>
-                      <p className="text-gray-600 text-sm">Find compatible roommates and explore verified hostels</p>
-                    </div>
-                  </div>
-                </button>
-
-                {/* Hostel Owner Card */}
-                <button
-                  onClick={() => handleRoleSelect('hostel-owner')}
-                  className="w-full p-6 border-2 border-gray-200 rounded-xl hover:border-orange-500 hover:bg-orange-50/50 transition-all text-left group"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                      <Building2 className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-1 group-hover:text-orange-600 transition-colors">I'm a Hostel Owner</h3>
-                      <p className="text-gray-600 text-sm">List your property and connect with quality students</p>
-                    </div>
-                  </div>
-                </button>
+        {/* Progress Bar */}
+        {step === 2 && (
+          <div className="mb-8 flex items-center gap-3">
+            <button
+              onClick={() => setStep(1)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5 text-gray-600" />
+            </button>
+            <div className="flex-1">
+              <div className="flex gap-2 mb-2">
+                <div className="flex-1 h-1 bg-black rounded-full" />
+                <div className="flex-1 h-1 bg-gray-200 rounded-full" />
               </div>
+              <p className="text-xs text-gray-600">Step {step} of 2</p>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Step 2: Account Creation */}
-          {step === 2 && (
-            <div>
-              <h2 className="text-3xl font-bold mb-2 text-gray-900">Create Account</h2>
-              <p className="text-gray-600 mb-8">
-                Registering as a <span className="font-semibold text-emerald-600">{role === 'student' ? 'Student' : 'Hostel Owner'}</span>
-              </p>
+        {/* Step 1: Role Selection */}
+        {step === 1 && (
+          <div>
+            <h1 className="text-4xl font-bold mb-3 text-gray-900">Join LiviSync</h1>
+            <p className="text-gray-600 mb-10">Choose your role to get started</p>
 
-              <form onSubmit={handleRegister} className="space-y-5">
-                {/* Full Name */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2.5">Full Name</label>
-                  <div className="relative">
-                    <User className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="John Doe"
-                      className="w-full pl-11 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-                      required
-                    />
+            <div className="space-y-3">
+              {/* Student Card */}
+              <button
+                onClick={() => handleRoleSelect('student')}
+                className="w-full p-5 border border-gray-200 rounded-lg hover:border-black hover:bg-black/2 transition-all text-left group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                    <Users className="w-5 h-5" />
                   </div>
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2.5">Email Address</label>
-                  <div className="relative">
-                    <Mail className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="you@example.com"
-                      className="w-full pl-11 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-                      required
-                    />
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 mb-1">I'm a Student</h3>
+                    <p className="text-gray-600 text-sm">Find compatible roommates and verified hostels</p>
                   </div>
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors flex-shrink-0 mt-1" />
                 </div>
+              </button>
 
-                {/* Phone Number */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2.5">Phone Number</label>
-                  <div className="relative">
-                    <Phone className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+1 (555) 000-0000"
-                      className="w-full pl-11 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-                      required
-                    />
+              {/* Hostel Owner Card */}
+              <button
+                onClick={() => handleRoleSelect('hostel-owner')}
+                className="w-full p-5 border border-gray-200 rounded-lg hover:border-black hover:bg-black/2 transition-all text-left group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                    <Building2 className="w-5 h-5" />
                   </div>
-                </div>
-
-                {/* Password */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2.5">Password</label>
-                  <div className="relative">
-                    <Lock className="absolute left-3.5 top-3.5 w-5 h-5 text-gray-400" />
-                    <input
-                      type="password"
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      placeholder="••••••••"
-                      className="w-full pl-11 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-                      required
-                    />
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 mb-1">I'm a Hostel Owner</h3>
+                    <p className="text-gray-600 text-sm">List your property and connect with students</p>
                   </div>
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors flex-shrink-0 mt-1" />
                 </div>
-
-                {/* Actions */}
-                <div className="flex gap-3 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="flex-1 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 font-semibold transition-colors"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg hover:shadow-lg hover:shadow-emerald-500/20 font-semibold transition-all"
-                  >
-                    Create Account
-                  </button>
-                </div>
-              </form>
+              </button>
             </div>
-          )}
 
-          {/* Footer */}
-          <div className="mt-8 text-center">
-            <p className="text-gray-600 text-sm">
+            <p className="text-center text-sm text-gray-600 mt-10">
               Already have an account?{' '}
-              <Link to="/login" className="text-emerald-600 hover:text-emerald-700 font-semibold">
+              <Link to="/login" className="font-semibold text-gray-900 hover:underline">
                 Sign In
               </Link>
             </p>
           </div>
+        )}
 
-          {/* Terms */}
-          <p className="text-center text-xs text-gray-600 mt-4">
-            By creating an account, you agree to our{' '}
-            <a href="#" className="text-emerald-600 hover:underline">Terms of Service</a>
-          </p>
-        </div>
+        {/* Step 2: Account Creation */}
+        {step === 2 && (
+          <div>
+            <h1 className="text-4xl font-bold mb-3 text-gray-900">Create Account</h1>
+            <p className="text-gray-600 mb-10">
+              Registering as a {role === 'student' ? 'Student' : 'Hostel Owner'}
+            </p>
+
+            <form onSubmit={handleRegister} className="space-y-5">
+              {/* Full Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-900 mb-2">Full Name</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="John Doe"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-gray-900 mb-2">Email</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <label className="block text-sm font-medium text-gray-900 mb-2">Phone</label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="+1 (555) 000-0000"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="block text-sm font-medium text-gray-900 mb-2">Password</label>
+                <input
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Create Account Button */}
+              <button
+                type="submit"
+                className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-900 font-semibold transition-colors mt-8"
+              >
+                Create Account
+              </button>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );
